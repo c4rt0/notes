@@ -1,9 +1,7 @@
-Template for the Read the Docs tutorial
-=======================================
+Documenting Software Engineering Journey
+========================================
+Created with [readthedocs](https://readthedocs.io)
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
-
-Read the tutorial here:
+Tutorial here:
 
 https://docs.readthedocs.io/en/stable/tutorial/
