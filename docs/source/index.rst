@@ -1,5 +1,8 @@
-Welcome to Lumache's documentation!
+Welcome to Linux Developer's documentation!
 ===================================
+
+For now this project is in development stage.
+Shortly some of the tips and tricks will be published here.
 
 **Lumache** (/lu'make/) is a Python library for cooks and food lovers
 that creates recipes mixing random ingredients.
