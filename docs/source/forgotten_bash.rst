@@ -10,7 +10,7 @@ Directory stack tool used in shell scripting
 .. code-block:: console
         pushd 
 
-
+*
 popd
 ----
 Directory stack tool used in shell scripting 
@@ -18,6 +18,7 @@ Directory stack tool used in shell scripting
 .. code-block:: console
         popd
 
+*
 curl cheat.sh
 -------------
 
@@ -26,6 +27,7 @@ Summarizes man pages for particular command, example:
 .. code-block:: console
         curl cheat.sh/vim
 
+*
 progress
 --------
 
@@ -38,4 +40,4 @@ Note. Requires:
 .. code-block:: console
         sudo dnf install progress -y
 
-
+To be continued...
