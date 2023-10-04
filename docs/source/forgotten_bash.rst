@@ -8,7 +8,7 @@ pushd
 Directory stack tool used in shell scripting 
 
 .. code-block:: console
-$ pushd 
+   pushd 
 
 
 popd
@@ -16,4 +16,26 @@ popd
 Directory stack tool used in shell scripting 
 
 .. code-block:: console
-$ popd
+   popd
+
+curl cheat.sh
+-------------
+
+Summarizes man pages for particular command, example:
+
+.. code-block:: console
+   curl cheat.sh/vim
+
+progress
+--------
+
+Shows progress while copying large files in terminal
+.. code-block:: console
+   cp file.a /directory & progress -mp $!
+
+Note. Requires:
+
+.. code-block:: console
+   sudo dnf install progress -y
+
+
