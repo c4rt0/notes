@@ -20,6 +20,7 @@ Contents
 --------
 
 .. toctree::
-
+   forgotten_bash
+   rhcsa
    usage
    api
