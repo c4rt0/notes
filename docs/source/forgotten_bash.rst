@@ -7,27 +7,28 @@ pushd
 -----
 Directory stack tool used in shell scripting 
 
-.. code-block:: console
-        pushd 
+*pushd* 
 
-*
+
 popd
 ----
 Directory stack tool used in shell scripting 
 
-.. code-block:: console
-        popd
+*popd*
 
-*
 curl cheat.sh
 -------------
 
 Summarizes man pages for particular command, example:
 
-.. code-block:: console
-        curl cheat.sh/vim
+*curl cheat.sh/vim*
 
-*
+Here I even went a step further and edited my ~/.zshrc with a new alias:
+
+*alias ch = 'curl cheat.sh/${0}'*
+
+This way I can simply type in 'ch vim' and look up docs for anything much quicker
+
 progress
 --------
 
