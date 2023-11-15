@@ -33,12 +33,19 @@ progress
 --------
 
 Shows progress while copying large files in terminal
-.. code-block:: console
-        cp file.a /directory & progress -mp $!
-
-Note. Requires:
 
 .. code-block:: console
-        sudo dnf install progress -y
 
-To be continued...
+   cp file.a /directory & progress -mp $!
+
+.. .. code-block:: console
+
+..    sudo dnf install progress -y
+
+watch
+-----
+Watches if file `console.txt` exists and sends signal if it does
+
+.. code-block:: console
+
+   watch -n 0.1 ls console.txt
