@@ -14,6 +14,7 @@ Contents
    bash
    cosa
    forgotten_bash
+   git
    rhcsa
    usage
    
