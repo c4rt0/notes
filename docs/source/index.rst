@@ -17,4 +17,5 @@ Contents
    git
    rhcsa
    usage
+   zshrc
    
