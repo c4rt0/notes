@@ -1,14 +1,5 @@
 # Configuration file for the Sphinx documentation builder.
 
-import os
-import sys
-
-sys.path.append(os.path.abspath("./_ext"))
-
-extensions = ['todo']
-
-todo_include_todos = True
-
 # -- Project information
 
 project = 'Linux Developer`s notes'

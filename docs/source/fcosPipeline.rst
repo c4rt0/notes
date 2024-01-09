@@ -13,7 +13,7 @@ Here's also a (link to my fork)[https://gitlab.cee.redhat.com/apiaseck/rhcos-dev
 
 1. Make sure you have access to Jenkins and Openshift console for the `rhcos-devel`
 
-.. todo:: Here insert appropiate link to the file where allowed users are listed
+TODO: Here insert appropiate link to the file where allowed users are listed
 
 Jenkins Error message 
 --------------
