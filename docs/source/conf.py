@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Linux Developer`s notes'
-copyright = '2023, apiaseck'
+copyright = '2024, apiaseck'
 author = 'Adam Piasecki'
 
 release = '0.1'

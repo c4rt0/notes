@@ -8,5 +8,5 @@ When running `git commit` without a flag, add the `co-authored-by` as below to s
 
 .. code-block:: console
 
-         Co-authored-by: Adamn Piasecki <c4rt0gr4ph3r@redhat.com>
+         Co-authored-by: Adam Piasecki <c4rt0gr4ph3r@redhat.com>
 

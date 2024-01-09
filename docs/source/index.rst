@@ -10,12 +10,9 @@ Contents
 --------
 
 .. toctree::
-   api
-   bash
    cosa
+   fcosPipeline
    forgotten_bash
    git
-   rhcsa
-   usage
+   readTeheDocs
    zshrc
-   

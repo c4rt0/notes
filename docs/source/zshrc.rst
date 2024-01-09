@@ -1,4 +1,4 @@
-.zshrc / .bashrc file modifications
+.zshrc & .bashrc modifications
 ===================================
 
 aliases

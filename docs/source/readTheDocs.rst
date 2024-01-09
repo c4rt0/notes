@@ -1,5 +1,15 @@
+HOW TO: Read the Docs 
+=====================
+
+1. Sign up to Read the Docs Community:
+https://readthedocs.org/
+
+2. Read the Docs Doccumentation:
+https://docs.readthedocs.io/en/stable/tutorial/index.html
+
+
 Usage
-=====
+-------
 
 .. _installation:
 
@@ -31,4 +41,3 @@ For example:
 >>> import lumache
 >>> lumache.get_random_ingredients()
 ['shells', 'gorgonzola', 'parsley']
-
