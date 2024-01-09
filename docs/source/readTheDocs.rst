@@ -41,3 +41,10 @@ For example:
 >>> import lumache
 >>> lumache.get_random_ingredients()
 ['shells', 'gorgonzola', 'parsley']
+
+
+using templates
+---------------
+
+TODO:
+https://www.sphinx-doc.org/en/master/development/tutorials/todo.html
