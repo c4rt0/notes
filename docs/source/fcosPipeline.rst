@@ -3,13 +3,13 @@ CoreOS pipeline
 
 This doc page relates mainly to modifying the build configuration of the Jenkins <b>`rhcos-devel`</b> pipeline.
 
-(fedora-coreos-pipeline config)[https://github.com/coreos/fedora-coreos-pipeline/blob/main/docs/config.yaml] and also (rhcos-devel-pipecfg)[https://gitlab.cee.redhat.com/coreos/rhcos-devel-pipecfg/-/blob/main/config.yaml?ref_type=heads] (accessible via VPN only):
+`fedora-coreos-pipeline config <https://github.com/coreos/fedora-coreos-pipeline/blob/main/docs/config.yaml>`_ and also `rhcos-devel-pipecfg <https://gitlab.cee.redhat.com/coreos/rhcos-devel-pipecfg/-/blob/main/config.yaml?ref_type=heads>`_ (accessible via VPN only):
 
-Here's also a (link to my fork)[https://gitlab.cee.redhat.com/apiaseck/rhcos-devel-pipecfg] of the above config.
+Here's also a `link to my fork <https://gitlab.cee.redhat.com/apiaseck/rhcos-devel-pipecfg>`_ of the above config.
 
-(Red Hat openshift console)[https://console-openshift-console.apps.ocp-virt.prod.psi.redhat.com/k8s/ns/rhcos-devel/configmaps/jenkins-config] for rhcos-devel
+`Red Hat openshift console <https://console-openshift-console.apps.ocp-virt.prod.psi.redhat.com/k8s/ns/rhcos-devel/configmaps/jenkins-config>`_ for rhcos-devel
 
-(Jenkins rhcos devel)[https://jenkins-rhcos-devel.apps.ocp-virt.prod.psi.redhat.com/] used for builds
+`Jenkins rhcos devel <https://jenkins-rhcos-devel.apps.ocp-virt.prod.psi.redhat.com/>`_ used for builds
 
 1. Make sure you have access to Jenkins and Openshift console for the `rhcos-devel`
 

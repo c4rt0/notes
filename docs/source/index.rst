@@ -14,5 +14,5 @@ Contents
    fcosPipeline
    forgotten_bash
    git
-   readTeheDocs
+   readTheDocs
    zshrc
