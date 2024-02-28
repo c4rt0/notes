@@ -12,7 +12,9 @@ Contents
 .. toctree::
    cosa
    fcosPipeline
+   fedora-infra
    forgotten_bash
    git
+   rhcsa
    readTheDocs
    zshrc
