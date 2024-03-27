@@ -17,4 +17,5 @@ Contents
    git
    rhcsa
    readTheDocs
+   silverblue
    zshrc

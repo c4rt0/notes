@@ -2,7 +2,7 @@ Fedora-infra
 ===================================
 
 Connecting to batcave on fedora-infra to run ansible playbooks
---------------------------------
+----------------------------------------------------------------
 
 1. Modify the *~/.ssh/config* file according to `the docs <https://docs.fedoraproject.org/en-US/infra/sysadmin_guide/sshaccess/>`_
 
@@ -41,7 +41,7 @@ Once that was done I ran first playbook with *sudo* and *-C* option:
 
 .. code-block:: console
 
-    sudo rbac-playbook -C openshift-apps/fedora-coreos-pipeline.yml```
+    sudo rbac-playbook -C openshift-apps/fedora-coreos-pipeline.yml
 
 from *rbac-playbook -h*:
 
@@ -52,3 +52,25 @@ from *rbac-playbook -h*:
 Another useful commands I ran while on batcave:
 
 *groups* - displayed the fedora groups I'm a member of.
+
+
+Updating Dockerfile in fedora-infra
+----------------------------------------------------------------
+
+This was just a small task, a part of an extensive list of TODO things to complete in order to rebase coreos to Fedora 39.
+(Here's the tracker issue: https://github.com/coreos/fedora-coreos-tracker/issues/1490)
+
+It's mindblowing what have to be complete in order to implement 1 letter change! o_O
+In order to update the:
+
+.. code-block:: console
+
+    FROM registry.fedoraproject.org/fedora:38
+
+to:
+
+.. code-block:: console
+
+    FROM registry.fedoraproject.org/fedora:39
+
+I had to follow `this tutorial <https://docs.fedoraproject.org/en-US/infra/sysadmin_guide/coreos-cincinnati/#_upgrades>`_

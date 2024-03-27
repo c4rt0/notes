@@ -4,8 +4,9 @@
 aliases
 -------
 
-Current aliases of my `.zshrc` file on my Silverblue machine:
-(To edit run: `nano ~/.zshrc`, `nano ~/.bashrc`, `vim ~/.bashrc`)
+Current aliases of my `.zshrc` file I use most:
+
+(To easily edit your config run: `nano ~/.zshrc` or `nano ~/.bashrc`. If you know VIM, you certainly don't need this paragraph.)
 
 .. code-block:: console
 
@@ -33,14 +34,11 @@ Current aliases of my `.zshrc` file on my Silverblue machine:
         alias cdf='cd ~/Work/fcos'
         alias cdr='cd ~/Work/rhcos'
         alias cim='vim'
-        alias cr='cosa run'
         alias pp='podman pull quay.io/coreos-assembler/coreos-assembler:latest'
         alias teb='toolbox enter banana'
         alias ru='rpm-ostree update'
         alias rs='rpm-ostree status'
         alias sr='systemctl reboot'
-        alias vs='cat ~/Code/vim.md'
-        alias evs='vim ~/Code/vim.md'
         alias ssh-show="ssh-agent sh -c 'ssh-add; ssh-add -L'"
         alias path="echo $PATH | tr \":\" \"\n\""
         alias fcos_dir="/var/home/adamsky/Work/fcos/builds/latest/x86_64"
