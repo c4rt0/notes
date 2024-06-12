@@ -15,6 +15,7 @@ Contents
    fedora-infra
    forgotten_bash
    git
+   podman
    rhcsa
    readTheDocs
    silverblue
