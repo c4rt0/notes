@@ -5,27 +5,36 @@ There are a few usefull bash commands I came across during my software career, t
 
 pushd
 -----
+
 Directory stack tool used in shell scripting 
 
-*pushd* 
+.. code-block:: console
 
+   pushd 
 
 popd
 ----
+
 Directory stack tool used in shell scripting 
 
-*popd*
+.. code-block:: console
+
+   popd
 
 curl cheat.sh
 -------------
 
 Summarizes man pages for particular command, example:
 
-*curl cheat.sh/vim*
+.. code-block:: console
+
+   curl cheat.sh/vim*
 
 Here I even went a step further and edited my ~/.zshrc with a new alias:
 
-*alias ch = 'curl cheat.sh/${0}'*
+.. code-block:: console
+
+   alias ch = 'curl cheat.sh/${0}'*
 
 This way I can simply type in 'ch vim' and look up docs for anything much quicker
 
@@ -38,12 +47,13 @@ Shows progress while copying large files in terminal
 
    cp file.a /directory & progress -mp $!
 
-.. .. code-block:: console
+.. code-block:: console
 
-..    sudo dnf install progress -y
+   sudo dnf install progress -y
 
 watch
 -----
+
 Watches if file `console.txt` exists and sends signal if it does
 
 .. code-block:: console
