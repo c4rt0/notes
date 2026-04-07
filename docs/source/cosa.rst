@@ -1,7 +1,7 @@
 CoreOS
 ===================================
 
-I keep forgetting stuff, so here I will be placing the usefull CoreOS related commands.
+I keep forgetting stuff, so here I will be placing the useful CoreOS related commands.
 
 building rhcos
 --------------
@@ -70,7 +70,7 @@ cosa func
         }
 
 
-# Playing arround with customisation:
+# Playing around with customisation:
 
 Running the iscisi
 ------------------
@@ -94,8 +94,6 @@ Running the iscisi
         [coreos-assembler]$ ../bin/kola testiso -S iso-install-iscsi
 
 
-===================================
-
 cosa shell
 -----------
 
@@ -115,7 +113,7 @@ cosa spawn and zincati
 ----------
 
 
-Here's how to spawn a new cosa vm on aws, while having a direct access to it's cli:
+Here's how to spawn a new cosa vm on aws, while having direct access to its cli:
 
 .. code-block:: console
 
@@ -191,4 +189,5 @@ After the above is found, remove it and restart zincati (it now should work fine
         May 22 12:07:12 ip-172-31-24-128 systemd[1]: Started zincati.service - Zincati Update Agent.
         May 22 12:07:12 ip-172-31-24-128 zincati[2276]: [INFO  zincati::update_agent::actor] reached steady state, periodically polling for updates
         May 22 12:07:12 ip-172-31-24-128 zincati[2276]: [INFO  zincati::cincinnati] current release detected as not a dead-end
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Notice the key line changed from ``auto-updates logic disabled by configuration`` to ``auto-updates logic enabled`` — this confirms zincati is now actively polling for updates.

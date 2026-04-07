@@ -1,7 +1,7 @@
 Podman
 ===================================
 
-Better, deamonless docket... now, let's dive into:
+Better, daemonless Docker alternative... now, let's dive into:
 
 Quadlets
 --------------

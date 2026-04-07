@@ -1,7 +1,7 @@
 Forgotten bash commands
 ===================================
 
-There are a few usefull bash commands I came across during my software career, that has a special meaning and should be used more often. I guess everyone has theyre own workflow, but mine works well with the few forgotten ones below:
+There are a few useful bash commands I came across during my software career, that have a special meaning and should be used more often. I guess everyone has their own workflow, but mine works well with the few forgotten ones below:
 
 pushd
 -----

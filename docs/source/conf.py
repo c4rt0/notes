@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Linux Developer`s notes'
-copyright = '2024, apiaseck'
+copyright = '2024-2026, apiaseck'
 author = 'Adam Piasecki'
 
 release = '0.1'
@@ -13,9 +13,6 @@ version = '0.1.0'
 
 extensions = [
     'sphinx.ext.duration',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
 ]
