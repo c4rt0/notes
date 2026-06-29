@@ -10,6 +10,7 @@ Contents
 --------
 
 .. toctree::
+   bash
    cosa
    fcosPipeline
    forgotten_bash

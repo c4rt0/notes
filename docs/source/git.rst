@@ -76,3 +76,60 @@ Search commit messages for a keyword:
 .. code-block:: console
 
         $ git log --grep="iscsi" --oneline
+
+comparing branches: ``..`` vs ``...``
+-------------------------------------
+
+``git diff A..B`` shows the difference between two points — and what ``A`` and
+``B`` are changes the meaning completely:
+
+.. code-block:: console
+
+        $ git diff origin/main..HEAD       # everything your branch adds vs main (before opening a PR)
+        $ git diff origin/my-branch..HEAD  # what changed since your last push (before force-pushing)
+        $ git diff main..my-branch         # two local branches
+
+Double dot is a direct diff between the two refs. **Triple dot** diffs ``B``
+against the *common ancestor* of ``A`` and ``B`` — handy for ``git log`` to list
+only the commits on your branch, even if main has moved on:
+
+.. code-block:: console
+
+        $ git log origin/main...HEAD --oneline
+
+For ``git diff``, double dot is almost always what you want.
+
+editing an earlier commit
+-------------------------
+
+To amend a commit that isn't the latest, mark it ``edit`` in an interactive
+rebase:
+
+.. code-block:: console
+
+        $ git rebase -i HEAD~3      # go back N commits
+
+In the editor: ``pick`` keeps a commit as-is, ``edit`` stops so you can amend,
+``squash`` merges into the previous commit, ``reword`` changes only the message.
+When the rebase stops on an ``edit``:
+
+.. code-block:: console
+
+        $ # make your changes
+        $ git add <files>
+        $ git commit --amend -S --no-edit
+        $ git rebase --continue
+
+If you have unstaged work when starting, ``git stash`` first and ``git stash
+pop`` after the rebase stops.
+
+force-push safety
+-----------------
+
+Rebasing rewrites commit hashes, so updating the remote needs a force push.
+Always prefer the safe variant:
+
+.. code-block:: console
+
+        $ git push --force-with-lease   # refuses if someone else pushed since your last fetch
+        $ git push --force              # overwrites unconditionally — avoid on shared branches

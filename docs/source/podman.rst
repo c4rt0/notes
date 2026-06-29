@@ -87,3 +87,83 @@ Once started it looks like a regular service:
 In practice you don’t need to care about the generated file, all you need to maintain is the container file. In fact, over time as podman/systemd integration is improved it may generate slightly different files to take advantage of the new features.
 
 In addition to being easier to understand, quadlet comes with a set of defaults for how the container is run that better fit the usecase of running system services. For example, it defaults to running without any capabilities, it has a basic init process in the container, it uses the journal log driver, and it sets up the cgroups in a mode that best matches what systemd needs.
+
+Working with images
+-------------------
+
+A container **image** is a read-only filesystem snapshot identified by a
+**name** (``quay.io/openshift-release-dev/ocp-release``), a mutable **tag**
+(``:4.19.17-x86_64``) and an immutable **digest** (``@sha256:29e3563d...``).
+For verification work, prefer digests — they prove you're looking at exactly
+the image that shipped. A **container** is a running instance of an image.
+
+Pull, run, inspect
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+        $ podman pull quay.io/openshift-release-dev/ocp-release:4.19.17-x86_64
+        $ podman pull quay.io/.../ocp-v4.0-art-dev@sha256:29e3563d...   # by digest (exact image)
+
+        $ podman run --rm <image> rpm -qa            # list RPMs, then discard the container
+        $ podman run --rm -it <image> /bin/bash      # interactive shell inside the image
+        $ podman run --rm <image> cat /etc/os-release
+
+Useful flags: ``--rm`` (delete the container when done), ``-it`` (interactive
+terminal), ``-v /local:/in-container`` (mount a directory).
+
+List and clean up
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+        $ podman images                              # images on this machine
+        $ podman rmi <image>                         # remove an image
+        $ podman image prune -a                       # remove all unused images
+        $ podman ps -a                               # all containers (incl. stopped)
+        $ podman rm -a                               # remove stopped containers
+
+Build and push
+^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+        $ podman build . -t localhost/my-image:test
+        $ podman build . --build-arg-file build-args.conf \
+              --secret id=yumrepos,src=/tmp/all.repo -t localhost/rhcos:test
+
+        $ podman login quay.io
+        $ podman push localhost/my-image:test quay.io/myorg/my-image:test
+        $ podman push <image> --authfile auth.json    # when you can't podman login
+
+skopeo — inspect & copy without pulling
+----------------------------------------
+
+``skopeo`` talks directly to the registry API — no download, no local storage.
+
+.. code-block:: console
+
+        $ skopeo list-tags docker://quay.io/openshift-release-dev/ocp-release
+        $ skopeo inspect docker://quay.io/openshift-release-dev/ocp-release:4.19.17-x86_64
+        $ skopeo copy docker://src/image:tag docker://dst/image:tag
+        $ skopeo copy docker://quay.io/some/image:tag dir:/tmp/image-dump   # to a local dir
+
+**Rule of thumb:** if you need to run something *inside* the image, use
+``podman``; if you just need to ask the *registry* about it (tags, labels,
+existence), use ``skopeo`` — it's faster and downloads nothing.
+
+oc adm release info
+-------------------
+
+An OpenShift release is a bundle of ~100 images pinned by digest.
+``oc adm release info`` looks inside it — essential for RHCOS work:
+
+.. code-block:: console
+
+        # the RHCOS image for a given release (--image-for: rhel-coreos-8 / rhel-coreos / rhel-coreos-10)
+        $ IMAGE=$(oc adm release info quay.io/openshift-release-dev/ocp-release:4.19.17-x86_64 \
+              --image-for=rhel-coreos)
+
+        # then check a package inside that image
+        $ podman run --rm $IMAGE rpm -qa | grep afterburn
+        afterburn-5.9.0-1.el9_6.x86_64
