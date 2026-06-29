@@ -20,6 +20,7 @@ Contents
    groovy
    java
    jenkins
+   jq
    junitparser
    podman
    python
@@ -29,7 +30,10 @@ Contents
    rhcsa
    readTheDocs
    silverblue
+   ssh
+   systemd
    tmt
+   tmux
    training-models
    yaml
    zshrc
