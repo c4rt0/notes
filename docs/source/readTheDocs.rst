@@ -1,19 +1,37 @@
-HOW TO: Read the Docs 
-=====================
+How this site is built
+======================
 
-1. Sign up to Read the Docs Community:
-https://readthedocs.org/
+This site is written in reStructuredText, built with **Sphinx**, and published
+automatically by **ReadTheDocs** on every push to ``main``.
 
-2. Read the Docs Documentation:
-https://docs.readthedocs.io/en/stable/tutorial/index.html
+- ReadTheDocs Community: https://readthedocs.org/
+- Sphinx reStructuredText primer:
+  https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
+Project layout
+--------------
 
-Adding extensions
------------------
+- ``docs/source/*.rst`` - one file per topic
+- ``docs/source/index.rst`` - the landing page and the ``toctree``
+- ``docs/source/conf.py`` - Sphinx config (theme, extensions)
+- ``.readthedocs.yaml`` - the ReadTheDocs build configuration
+- ``docs/requirements.txt`` - Python deps installed during the build
 
-`TODO <https://github.com/c4rt0/notes/blob/main/docs/source/conf.py#L20-L23>`_
+Adding a page
+-------------
 
-Adding images
----------------
+Drop a ``.rst`` file in ``docs/source/`` and add its name (without the
+extension) to the ``toctree`` in ``index.rst``. Build locally to check it
+renders:
 
-`Example <https://github.com/readthedocs/readthedocs.org/blob/9e2e78653c5a7a79d1ae41cf016de7516a7d30d0/docs/user/tutorial/index.rst?plain=1#L60-L63>`_
+.. code-block:: console
+
+   $ pip install -r docs/requirements.txt
+   $ sphinx-build -b html docs/source docs/_build
+   $ # open docs/_build/index.html
+
+Enabling an extension
+---------------------
+
+Add it to the ``extensions`` list in ``conf.py`` and to
+``docs/requirements.txt`` so ReadTheDocs installs it on its build.

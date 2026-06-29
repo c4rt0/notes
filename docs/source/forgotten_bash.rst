@@ -1,61 +1,55 @@
 Forgotten bash commands
-===================================
+=======================
 
-There are a few useful bash commands I came across during my software career, that have a special meaning and should be used more often. I guess everyone has their own workflow, but mine works well with the few forgotten ones below:
+A few bash commands with a special meaning that deserve more use.
 
-pushd
------
+pushd / popd - the directory stack
+----------------------------------
 
-Directory stack tool used in shell scripting 
-
-.. code-block:: console
-
-   pushd 
-
-popd
-----
-
-Directory stack tool used in shell scripting 
+Instead of ``cd``-ing back and forth, push directories onto a stack and pop back
+out. ``dirs -v`` shows the stack with indices.
 
 .. code-block:: console
 
-   popd
+   $ pushd /var/log      # cd to /var/log AND remember where you were
+   $ pushd /etc          # now on /etc; stack: /etc /var/log ~
+   $ dirs -v             # list the stack
+   $ popd                # pop the top, back to /var/log
+   $ cd -                # simpler: toggle between the last two dirs
 
 curl cheat.sh
 -------------
 
-Summarizes man pages for particular command, example:
+``cheat.sh`` returns concise, example-first help for a command:
 
 .. code-block:: console
 
-   curl cheat.sh/vim*
+   $ curl cheat.sh/tar           # cheatsheet for tar
+   $ curl cheat.sh/tar/extract   # narrow to a sub-topic
 
-Here I even went a step further and edited my ~/.zshrc with a new alias:
+Handy alias (see also :doc:`zshrc`):
 
 .. code-block:: console
 
-   alias ch = 'curl cheat.sh/${0}'*
-
-This way I can simply type in 'ch vim' and look up docs for anything much quicker
+   alias ch='curl cheat.sh/$0'   # then just: ch tar
 
 progress
 --------
 
-Shows progress while copying large files in terminal
+Show progress for a running ``cp``/``mv``/``dd`` (install with
+``dnf install -y progress``):
 
 .. code-block:: console
 
-   cp file.a /directory & progress -mp $!
-
-.. code-block:: console
-
-   sudo dnf install progress -y
+   $ cp big.iso /mnt/ & progress -mp $!   # -m monitor, -p the just-started PID
 
 watch
 -----
 
-Watches if file `console.txt` exists and sends signal if it does
+Re-run a command every N seconds and show the latest output - good for watching
+a file appear or a value change:
 
 .. code-block:: console
 
-   watch -n 0.1 ls console.txt
+   $ watch -n 0.1 ls console.txt     # poll every 0.1s
+   $ watch -d 'rpm-ostree status'    # -d highlights what changed between runs

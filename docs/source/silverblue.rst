@@ -1,28 +1,62 @@
 Fedora Silverblue
-=====================
+=================
 
+Silverblue is an immutable, image-based Fedora desktop built on **rpm-ostree** -
+the OS is a read-only OSTree deployment you update atomically and can roll back.
+These are notes from real use, not official docs.
 
-I use Silverblue for a while now - it took a few runs to understand and feel the quite unique purpose of this distro.
-It's quite an interesting and impressive approach to the OS - I definitely encourage anyone to try it out. As anything in life ...
-You got to try it to know.
-
-If you're accustomed to the standard DNF or APT package managers - this one is a little different.
-Below you will see commands that helped me along the way to modify, use or configure the system to my liking.
-Obviously it's not the official documentation but a product of annoying errors which had to be logged since memory sometimes disappoints.
-Feel free to reach out in case something's off - I hope you'll find this helpful.
-
-Commands
-------------------------------------------------
-
-Rebase the system from F39 to F40.
+Status and updates
+------------------
 
 .. code-block:: console
 
-    rpm-ostree rebase fedora:fedora/40/x86_64/silverblue
+   $ rpm-ostree status        # current + previous deployments (* = booted)
+   $ rpm-ostree upgrade       # stage the latest update; reboot to apply
+   $ systemctl reboot
 
-Rebase rpm-ostree itself to the `latest one with quite a low karma at the time <https://bodhi.fedoraproject.org/updates/FEDORA-2024-95b6bafb8b>`_
+Layering packages
+-----------------
+
+Install RPMs on top of the base image (a reboot applies them):
 
 .. code-block:: console
 
-    rpm-ostree override replace https://bodhi.fedoraproject.org/updates/FEDORA-2024-95b6bafb8b
+   $ rpm-ostree install vim-enhanced
+   $ rpm-ostree uninstall vim-enhanced
+   $ rpm-ostree install --apply-live htop   # apply without reboot (experimental)
 
+Keep the base image lean and do most dev work in a container (see ``toolbox``
+below) rather than layering everything onto the host.
+
+Rolling back and pinning
+------------------------
+
+.. code-block:: console
+
+   $ rpm-ostree rollback      # boot the previous deployment
+   $ ostree admin pin 0       # pin the current deployment so it is not GC'd
+
+Rebasing to a new release
+------------------------
+
+.. code-block:: console
+
+   $ rpm-ostree rebase fedora:fedora/42/x86_64/silverblue
+
+You can also override a single package from a Bodhi update, e.g. to test a fix:
+
+.. code-block:: console
+
+   $ rpm-ostree override replace --experimental --from repo=updates-testing <pkg>
+
+toolbox - a mutable dev container
+--------------------------------
+
+``toolbox`` gives you a Fedora container that shares your home directory, so you
+can ``dnf install`` freely and keep the host image clean:
+
+.. code-block:: console
+
+   $ toolbox create
+   $ toolbox enter
+   $ sudo dnf install gcc make    # inside the toolbox, like a normal Fedora

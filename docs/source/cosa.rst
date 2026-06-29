@@ -160,7 +160,7 @@ Checking zincati logs
         May 22 10:32:49 ip-172-31-41-244 systemd[1]: Started zincati.service - Zincati Update Agent.
 
 
-When however updates are [automatically disabled](https://github.com/coreos/coreos-assembler/blob/6ec2120eca938b4678a9c683a567dd562a73b7b7/mantle/platform/cluster.go#L271-L272) 
+When however updates are `automatically disabled <https://github.com/coreos/coreos-assembler/blob/6ec2120eca938b4678a9c683a567dd562a73b7b7/mantle/platform/cluster.go#L271-L272>`_ 
 look for the ``*disable-auto-updates.toml`` in:
 
 .. code-block:: console

@@ -4,9 +4,9 @@
 aliases
 -------
 
-Current aliases of my `.zshrc` file I use most:
+Current aliases of my ``.zshrc`` file I use most:
 
-(To easily edit your config run: `nano ~/.zshrc` or `nano ~/.bashrc`. If you know VIM, you certainly don't need this paragraph.)
+(To easily edit your config run: ``nano ~/.zshrc`` or ``nano ~/.bashrc``. If you know VIM, you certainly don't need this paragraph.)
 
 .. code-block:: console
 
