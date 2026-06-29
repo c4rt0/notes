@@ -11,6 +11,7 @@ Contents
 
 .. toctree::
    bash
+   cka
    cosa
    fcosPipeline
    forgotten_bash
@@ -19,9 +20,12 @@ Contents
    groovy
    java
    jenkins
+   junitparser
    podman
    python
+   python-exercises
    regex
+   regex-exercises
    rhcsa
    readTheDocs
    silverblue

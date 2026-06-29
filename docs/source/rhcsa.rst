@@ -204,3 +204,140 @@ Troubleshooting boot
         $ touch /.autorelabel              # required for SELinux
         $ exit
         $ exit                             # system reboots
+
+
+systemd services and boot targets
+----------------------------------
+
+**Question 13:** Manage a service and set the default boot target.
+
+Ensure ``httpd`` starts on boot and is running now. Set the system to boot to
+the multi-user (non-graphical) target.
+
+.. code-block:: console
+
+        $ systemctl enable --now httpd      # enable + start in one step
+        $ systemctl status httpd
+        $ systemctl set-default multi-user.target
+        $ systemctl get-default             # verify
+        $ systemctl isolate multi-user.target   # switch now without rebooting
+
+Useful: ``systemctl list-units --type=service``, ``journalctl -u httpd``,
+``systemctl mask <unit>`` to fully disable a unit.
+
+
+Managing software
+-----------------
+
+**Question 14:** Install, list, and remove packages; manage module streams.
+
+.. code-block:: console
+
+        $ dnf install -y httpd
+        $ dnf list installed | grep httpd
+        $ dnf provides /usr/sbin/httpd      # which package owns a file
+        $ dnf remove -y httpd
+        $ dnf module list nodejs
+        $ dnf module install -y nodejs:18   # install a specific stream
+
+Add a repo by dropping a ``.repo`` file in ``/etc/yum.repos.d/`` (or
+``dnf config-manager --add-repo <url>``).
+
+
+Processes and tuning
+--------------------
+
+**Question 15:** Adjust process priority and apply a tuning profile.
+
+Start a process with a low priority, renice a running one, and set the
+``throughput-performance`` tuned profile.
+
+.. code-block:: console
+
+        $ nice -n 10 long-running-cmd &     # start with niceness 10
+        $ renice -n 5 -p <PID>              # change a running process
+        $ ps aux --sort=-%cpu | head        # top CPU consumers
+        $ tuned-adm active
+        $ tuned-adm profile throughput-performance
+
+
+firewalld
+---------
+
+**Question 16:** Open a service and a port persistently.
+
+Allow HTTP and TCP port 8080 in the default zone, surviving reload.
+
+.. code-block:: console
+
+        $ firewall-cmd --add-service=http --permanent
+        $ firewall-cmd --add-port=8080/tcp --permanent
+        $ firewall-cmd --reload
+        $ firewall-cmd --list-all           # verify
+
+``--permanent`` writes the rule; without ``--reload`` it won't be active.
+Omit ``--permanent`` for a runtime-only change.
+
+
+Network file systems (NFS / autofs)
+-----------------------------------
+
+**Question 17:** Mount an NFS export persistently, and on-demand with autofs.
+
+.. code-block:: console
+
+        # persistent mount via fstab
+        $ mkdir -p /mnt/share
+        $ echo "server:/export/share /mnt/share nfs defaults 0 0" >> /etc/fstab
+        $ mount -a
+
+        # autofs: mount home dirs on access
+        $ dnf install -y autofs
+        # /etc/auto.master.d/home.autofs:   /home/guests  /etc/auto.home
+        # /etc/auto.home:                   *  -rw  server:/export/home/&
+        $ systemctl enable --now autofs
+
+
+Time and chrony
+--------------
+
+**Question 18:** Set the timezone and verify NTP sync.
+
+.. code-block:: console
+
+        $ timedatectl set-timezone Europe/London
+        $ timedatectl set-ntp true
+        $ timedatectl                       # verify; chronyc sources for detail
+        $ chronyc sources
+
+
+Finding and archiving files
+---------------------------
+
+**Question 19:** Find files and create a compressed archive.
+
+Find all files larger than 10 MB owned by ``bob``, then archive ``/etc`` with
+gzip compression.
+
+.. code-block:: console
+
+        $ find / -size +10M -user bob 2>/dev/null
+        $ find /var/log -name "*.log" -mtime +7    # modified >7 days ago
+        $ tar czf /root/etc-backup.tar.gz /etc     # c=create z=gzip f=file
+        $ tar tzf /root/etc-backup.tar.gz | head   # list contents
+        $ tar xzf /root/etc-backup.tar.gz -C /tmp  # extract
+
+
+Exam tips
+---------
+
+- **Persistence is everything.** Almost every task must survive a reboot - use
+  ``--permanent`` (firewalld), ``/etc/fstab`` (mounts), ``systemctl enable``
+  (services). Reboot at the end and confirm nothing broke.
+- **Verify each task** with the matching read command (``getfacl``, ``df -h``,
+  ``firewall-cmd --list-all``, ``chage -l``).
+- **SELinux stays enforcing.** Never disable it to "fix" a problem - set the
+  right context/boolean instead, and remember ``touch /.autorelabel`` after a
+  password reset via ``rd.break``.
+- The exam is offline - lean on ``man``, ``--help``, and
+  ``/usr/share/doc/`` rather than the internet.
