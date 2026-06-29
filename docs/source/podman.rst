@@ -94,7 +94,7 @@ Working with images
 A container **image** is a read-only filesystem snapshot identified by a
 **name** (``quay.io/openshift-release-dev/ocp-release``), a mutable **tag**
 (``:4.19.17-x86_64``) and an immutable **digest** (``@sha256:29e3563d...``).
-For verification work, prefer digests — they prove you're looking at exactly
+For verification work, prefer digests - they prove you're looking at exactly
 the image that shipped. A **container** is a running instance of an image.
 
 Pull, run, inspect
@@ -136,10 +136,10 @@ Build and push
         $ podman push localhost/my-image:test quay.io/myorg/my-image:test
         $ podman push <image> --authfile auth.json    # when you can't podman login
 
-skopeo — inspect & copy without pulling
+skopeo - inspect & copy without pulling
 ----------------------------------------
 
-``skopeo`` talks directly to the registry API — no download, no local storage.
+``skopeo`` talks directly to the registry API - no download, no local storage.
 
 .. code-block:: console
 
@@ -150,13 +150,13 @@ skopeo — inspect & copy without pulling
 
 **Rule of thumb:** if you need to run something *inside* the image, use
 ``podman``; if you just need to ask the *registry* about it (tags, labels,
-existence), use ``skopeo`` — it's faster and downloads nothing.
+existence), use ``skopeo`` - it's faster and downloads nothing.
 
 oc adm release info
 -------------------
 
 An OpenShift release is a bundle of ~100 images pinned by digest.
-``oc adm release info`` looks inside it — essential for RHCOS work:
+``oc adm release info`` looks inside it - essential for RHCOS work:
 
 .. code-block:: console
 

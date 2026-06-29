@@ -9,7 +9,7 @@ https://docs.readthedocs.io/en/stable/tutorial/index.html
 
 
 Adding extensions
----------------
+-----------------
 
 `TODO <https://github.com/c4rt0/notes/blob/main/docs/source/conf.py#L20-L23>`_
 

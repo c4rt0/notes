@@ -12,7 +12,7 @@ When running ``git commit`` without a flag, add the ``Co-authored-by`` trailer t
 
 This goes at the bottom of the commit message body, separated by a blank line. GitHub will recognize both authors in the commit.
 
-Squash commits before merging a PR to keep the history clean — one commit per logical change is easier to review and revert:
+Squash commits before merging a PR to keep the history clean - one commit per logical change is easier to review and revert:
 
 .. code-block:: console
 
@@ -21,7 +21,7 @@ Squash commits before merging a PR to keep the history clean — one commit per 
 This opens an editor where you mark commits to ``squash`` or ``fixup`` into the first one.
 
 rebase workflow
---------------
+---------------
 
 To rebase your feature branch on top of the latest main:
 
@@ -44,7 +44,7 @@ To abort a rebase that went wrong:
         $ git rebase --abort
 
 useful commands
---------------
+---------------
 
 Show what changed between your branch and main (useful before opening a PR):
 
@@ -80,7 +80,7 @@ Search commit messages for a keyword:
 comparing branches: ``..`` vs ``...``
 -------------------------------------
 
-``git diff A..B`` shows the difference between two points — and what ``A`` and
+``git diff A..B`` shows the difference between two points - and what ``A`` and
 ``B`` are changes the meaning completely:
 
 .. code-block:: console
@@ -90,7 +90,7 @@ comparing branches: ``..`` vs ``...``
         $ git diff main..my-branch         # two local branches
 
 Double dot is a direct diff between the two refs. **Triple dot** diffs ``B``
-against the *common ancestor* of ``A`` and ``B`` — handy for ``git log`` to list
+against the *common ancestor* of ``A`` and ``B`` - handy for ``git log`` to list
 only the commits on your branch, even if main has moved on:
 
 .. code-block:: console
@@ -132,4 +132,4 @@ Always prefer the safe variant:
 .. code-block:: console
 
         $ git push --force-with-lease   # refuses if someone else pushed since your last fetch
-        $ git push --force              # overwrites unconditionally — avoid on shared branches
+        $ git push --force              # overwrites unconditionally - avoid on shared branches

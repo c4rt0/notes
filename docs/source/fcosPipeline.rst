@@ -5,7 +5,7 @@ Notes on the CoreOS build pipeline. The upstream Fedora CoreOS pipeline is
 configured via `fedora-coreos-pipeline config <https://github.com/coreos/fedora-coreos-pipeline/blob/main/docs/config.yaml>`_.
 
 Jenkins Error message
---------------
+---------------------
 
 Example of a ``kola testiso`` failure in the pipeline:
 

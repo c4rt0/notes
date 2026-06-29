@@ -1,4 +1,4 @@
-Bash — variables, arrays & eval
+Bash - variables, arrays & eval
 ===============================
 
 Notes on the parts of bash that trip people up: word splitting, why ``eval``
@@ -33,7 +33,7 @@ specifically want word splitting.
 
 .. code-block:: bash
 
-        MY_VAR=$(whoami)           # command substitution — captures output
+        MY_VAR=$(whoami)           # command substitution - captures output
         unset MY_VAR               # removes the variable entirely
 
         echo "${MY_VAR}_suffix"    # braces stop the var name running into the suffix
@@ -48,18 +48,18 @@ The word splitting problem
 .. code-block:: bash
 
         CMD="ls -la /tmp"
-        $CMD                       # works — bash splits into: ls, -la, /tmp
+        $CMD                       # works - bash splits into: ls, -la, /tmp
 
         CMD="grep 'hello world' file.txt"
         $CMD
         # bash splits into: grep, 'hello, world', file.txt
-        # the quotes inside the string are NOT processed — they're just characters
+        # the quotes inside the string are NOT processed - they're just characters
 
 **Why?** Variable expansion (step 2) happens *before* quote removal (step 4).
 By the time bash sees the quotes inside ``$CMD`` they are already plain
 characters, not grouping markers.
 
-eval — the nuclear option
+eval - the nuclear option
 -------------------------
 
 ``eval`` takes a string and runs it through the **entire** parsing pipeline
@@ -81,7 +81,7 @@ It executes **anything** in the string, which is exactly why it's dangerous:
 **Rule: never eval untrusted input.** Reserve it for the rare cases of dynamic
 variable names or re-parsing quotes you control.
 
-Arrays — the proper solution
+Arrays - the proper solution
 ----------------------------
 
 Arrays keep each element as a separate word, so there is no word-splitting
@@ -98,7 +98,7 @@ issue to work around.
         echo "${#FRUITS[@]}"           # number of elements
         echo "${!FRUITS[@]}"           # all indices
 
-``[@]`` vs ``[*]`` — the critical difference
+``[@]`` vs ``[*]`` - the critical difference
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
@@ -114,7 +114,7 @@ issue to work around.
 Arrays as command arguments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is the key use case — building a command with optional arguments:
+This is the key use case - building a command with optional arguments:
 
 .. code-block:: bash
 
@@ -129,8 +129,8 @@ This is the key use case — building a command with optional arguments:
         tmt run "${EXTRA_ARGS[@]}" --all
         # empty: tmt run --all      set: tmt run --debug -vvvv --all
 
-``"${EXTRA_ARGS[@]}"`` on an empty array expands to *nothing* — not an empty
-string — so there's no stray gap, and it's safe under ``set -u``.
+``"${EXTRA_ARGS[@]}"`` on an empty array expands to *nothing* - not an empty
+string - so there's no stray gap, and it's safe under ``set -u``.
 
 Quick reference
 ---------------
@@ -168,7 +168,7 @@ When to use what
    * - Optional command arguments
      - ``ARR=()`` + ``"${ARR[@]}"``
    * - Building commands from strings
-     - **avoid** — use arrays
+     - **avoid** - use arrays
    * - Dynamic variable names
      - ``eval`` (rare, be careful)
    * - Must re-parse quotes in a string

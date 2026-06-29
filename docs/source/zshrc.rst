@@ -41,5 +41,5 @@ Current aliases of my `.zshrc` file I use most:
         alias sr='systemctl reboot'
         alias ssh-show="ssh-agent sh -c 'ssh-add; ssh-add -L'"
         alias path="echo $PATH | tr \":\" \"\n\""
-        alias fcos_dir="/var/home/adamsky/Work/fcos/builds/latest/x86_64"
+        alias fcos_dir="/var/home/user/Work/fcos/builds/latest/x86_64"
 

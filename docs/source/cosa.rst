@@ -12,7 +12,7 @@ source: https://github.com/openshift/os/blob/master/docs/development-rhcos.md
 .. tip::
 
    Don't want to set up a full COSA environment? `Daedalus <https://adamcoding.com/daedalus>`_
-   is a web wizard that builds a custom bootable CoreOS / bootc image for you — pick a base
+   is a web wizard that builds a custom bootable CoreOS / bootc image for you - pick a base
    image, add packages, users, services and auto-updates, and download a ready-to-build
    Containerfile and build script. No COSA, YAML or Containerfile knowledge required
    (`source <https://github.com/c4rt0/daedalus>`_).
@@ -85,11 +85,11 @@ Running the iscisi
 
 .. code-block:: console
 
-        adamsky@laptop Work/coreos-assembler (pr/testiscsi %) » podman run --rm -ti --security-opt=label=disable --privileged \
+        user@laptop Work/coreos-assembler (pr/testiscsi %) » podman run --rm -ti --security-opt=label=disable --privileged \
         --uidmap=1000:0:1 --uidmap=0:1:1000 --uidmap=1001:1001:64536 \
         -v=${PWD}:/srv/ --device=/dev/kvm --device=/dev/fuse \
         --tmpfs=/tmp -v=/var/tmp:/var/tmp \
-        -v=/home/adamsky/Work/coreos-assembler-hacking/:/srv/fcos \
+        -v=/home/user/Work/coreos-assembler-hacking/:/srv/fcos \
         --name=cosa quay.io/coreos-assembler/coreos-assembler:latest shell
 
         [coreos-assembler]$ cd fcos
@@ -114,11 +114,11 @@ cosa shell
         Building kola
         [coreos-assembler]$ ./bin/kola run -b fcos --qemu-image fedora-coreos-38.20230918.dev.0-qemu.x86_64.qcow2 coreos.unique.boot.failure
 
-        podman run --rm -ti --security-opt=label=disable --privileged --uidmap=1000:0:1 --uidmap=0:1:1000 --uidmap=1001:1001:64536 -v=${PWD}:/srv/ --device=/dev/kvm --device=/dev/fuse --tmpfs=/tmp -v=/var/tmp:/var/tmp -v=/home/adamsky/Work/coreos-assembler-hacking/:/srv/fcos --name=cosa quay.io/coreos-assembler/coreos-assembler:latest shell
+        podman run --rm -ti --security-opt=label=disable --privileged --uidmap=1000:0:1 --uidmap=0:1:1000 --uidmap=1001:1001:64536 -v=${PWD}:/srv/ --device=/dev/kvm --device=/dev/fuse --tmpfs=/tmp -v=/var/tmp:/var/tmp -v=/home/user/Work/coreos-assembler-hacking/:/srv/fcos --name=cosa quay.io/coreos-assembler/coreos-assembler:latest shell
 
 
 cosa spawn and zincati
-----------
+----------------------
 
 
 Here's how to spawn a new cosa vm on aws, while having direct access to its cli:
@@ -161,7 +161,7 @@ Checking zincati logs
 
 
 When however updates are [automatically disabled](https://github.com/coreos/coreos-assembler/blob/6ec2120eca938b4678a9c683a567dd562a73b7b7/mantle/platform/cluster.go#L271-L272) 
-look for the *disable-auto-updates.toml in:
+look for the ``*disable-auto-updates.toml`` in:
 
 .. code-block:: console
         
@@ -198,4 +198,4 @@ After the above is found, remove it and restart zincati (it now should work fine
         May 22 12:07:12 ip-172-31-24-128 zincati[2276]: [INFO  zincati::update_agent::actor] reached steady state, periodically polling for updates
         May 22 12:07:12 ip-172-31-24-128 zincati[2276]: [INFO  zincati::cincinnati] current release detected as not a dead-end
 
-Notice the key line changed from ``auto-updates logic disabled by configuration`` to ``auto-updates logic enabled`` — this confirms zincati is now actively polling for updates.
+Notice the key line changed from ``auto-updates logic disabled by configuration`` to ``auto-updates logic enabled`` - this confirms zincati is now actively polling for updates.
